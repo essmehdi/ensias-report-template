@@ -1,3 +1,6 @@
+#let IMAGE_BOX_MAX_WIDTH = 120pt
+#let IMAGE_BOX_MAX_HEIGHT = 50pt
+
 #let project(title: "", subtitle: none, school-logo: "images/ENSIAS.svg", company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
@@ -45,16 +48,25 @@
   }
 
   if (company-logo != none or school-logo != none) {
-    if company-logo != none {
-      box(baseline: 0pt, image(company-logo, width: 25%))
-    }
-    h(1fr)
-    if school-logo != none {
-      box(image(school-logo, width: 15%))
-    }
-    linebreak()
+    block[
+      #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
+        #if company-logo != none {
+          align(left + horizon)[
+            #image(company-logo)
+          ]
+        }
+      ]
+      #h(1fr)
+      #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
+        #if school-logo != none {
+          align(right + horizon)[
+            #image(school-logo)
+          ]
+        }
+      ]
+    ]
   }
-
+  
   // Title box  
   align(center + horizon)[
     #if subtitle != none {
@@ -65,7 +77,6 @@
       ]
     }
     #line(length: 100%, stroke: 0.5pt)
-    #v(8pt)
     #text(size: 20pt, weight: "bold")[#title]
     #line(length: 100%, stroke: 0.5pt)
   ]
