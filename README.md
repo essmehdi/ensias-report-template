@@ -6,7 +6,9 @@ A Typst template to quickly make reports for projects at ENSIAS. This template w
 
 For now, it provides a first page style that matches the common reports style used and encouraged at ENSIAS.
 
-It also provides a style for first level headings to act as chapters
+It also provides a style for first level headings to act as chapters.
+
+More improvements will come soon.
 
 ## Usage
 
