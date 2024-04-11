@@ -1,0 +1,8 @@
+[package]
+name = "ensias-report"
+description = "A Typst template to quickly scaffold a report for your projects and internships at ENSIAS"
+version = "0.1.0"
+entrypoint = "template.typ"
+authors = ["Mehdi Essalehi <mehdi.essalehi@gmail.com>", "Amine Hadnane"]
+keywords = ["ensias", "report", "internship", "academic", "project"]
+exclude = ["example.typ", "example.pdf"]
