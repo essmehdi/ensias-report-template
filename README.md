@@ -22,6 +22,8 @@ More improvements will come soon.
     "Amine Hadnane",
     "Mehdi Essalehi"
   ),
+  school-logo: "images/ENSIAS.svg",
+  company-logo: "images/company.svg",
   mentors: (
     "Pr. John Smith (Internal)",
     "Jane Doe (External)"
