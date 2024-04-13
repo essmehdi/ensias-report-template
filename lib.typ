@@ -1,7 +1,7 @@
 #let IMAGE_BOX_MAX_WIDTH = 120pt
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
 
-#let project(title: "", subtitle: none, school-logo: "images/ENSIAS.svg", company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, body) = {
+#let project(title: "", subtitle: none, school-logo: "images/ENSIAS.svg", company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, french: false, body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(
@@ -24,14 +24,21 @@
     })
   )
 
-  set text(font: "Linux Libertine", lang: "en", size: 13pt)
+  let dict = json("resources/i18n/en.json")
+  let lang = "en"
+  if french {
+    dict = json("resources/i18n/fr.json")
+    lang = "fr"
+  }
+
+  set text(font: "Linux Libertine", lang: lang, size: 13pt)
   set heading(numbering: "1.1")
   
   show heading: it => {
     if it.level == 1 and it.numbering != none {
       pagebreak()
       v(40pt)
-      text(size: 30pt)[Chapter #counter(heading).display() #linebreak() #it.body ]
+      text(size: 30pt)[#dict.chapter #counter(heading).display() #linebreak() #it.body ]
       v(60pt)
     } else {
       v(5pt)
@@ -90,9 +97,14 @@
       // Authors
       #if authors.len() > 0 {
         [
-          *Author#if authors.len() > 1 {
-            [s]
-          }* #linebreak()
+          #text(weight: "bold")[
+            #if authors.len() > 1 {
+              dict.author_plural
+            } else {
+              dict.author
+            }
+            #linebreak()
+          ]
           #for author in authors {
             [#author #linebreak()]
           }
@@ -103,9 +115,14 @@
       // Mentor
       #if mentors != none and mentors.len() > 0 {
         align(right)[
-          *Mentor#if mentors.len() > 1 {
-            [s]
-          }* #linebreak()
+          #text(weight: "bold")[
+            #if mentors.len() > 1 {
+              dict.mentor_plural
+            } else {
+              dict.mentor
+            }
+            #linebreak()
+          ]
           #for mentor in mentors {
             mentor
             linebreak()
@@ -115,7 +132,7 @@
       // Jury
       #if jury != none and jury.len() > 0 {
         align(right)[
-          *Jury* #linebreak()
+          *#dict.jury* #linebreak()
           #for prof in jury {
             [#prof #linebreak()]
           }
@@ -130,7 +147,7 @@
       linebreak()
     }
     #if academic-year != none {
-      [Academic year: #academic-year]
+      [#dict.academic_year: #academic-year]
     }
   ]
   
@@ -143,14 +160,14 @@
 
   // Table of figures.
   outline(
-    title: [Table of figures],
+    title: dict.figures_table,
     target: figure.where(kind: image)
   )
 
   pagebreak()
 
   outline(
-    title: [Table of tables],
+    title: dict.tables_table,
     target: figure.where(kind: table)
   )
 

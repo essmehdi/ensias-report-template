@@ -16,8 +16,8 @@ More improvements will come soon.
 #import "@preview/ensias-report": project
 
 #show: project.with(
-  title: "Example title",
-  subtitle: "A hecker's guide",
+  title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
+  subtitle: "Second year internship report",
   authors: (
     "Amine Hadnane",
     "Mehdi Essalehi"
@@ -33,7 +33,8 @@ More improvements will come soon.
     "Pr. Jane Doe"
   ),
   branch: "Software Engineering",
-  academic-year: "2077-2078"
+  academic-year: "2077-2078",
+  french: false // Use french instead of english
 )
 
 // Put then your content here
