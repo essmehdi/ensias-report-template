@@ -1,7 +1,7 @@
 #let IMAGE_BOX_MAX_WIDTH = 120pt
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
 
-#let project(title: "", subtitle: none, school-logo: "images/ENSIAS.svg", company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, french: false, body) = {
+#let project(title: "", subtitle: none, school-logo: none, company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, french: false, body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(
@@ -47,32 +47,23 @@
     }
   }
 
-  if company-logo == "" {
-    company-logo = none
-  }
-  if school-logo == "" {
-    school-logo = none
-  }
-
-  if (company-logo != none or school-logo != none) {
-    block[
-      #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
-        #if company-logo != none {
-          align(left + horizon)[
-            #image(company-logo)
-          ]
-        }
+  block[
+    #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
+      #align(left + horizon)[
+        #company-logo
       ]
-      #h(1fr)
-      #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
-        #if school-logo != none {
-          align(right + horizon)[
-            #image(school-logo)
-          ]
+    ]
+    #h(1fr)
+    #box(height: IMAGE_BOX_MAX_HEIGHT, width: IMAGE_BOX_MAX_WIDTH)[
+      #align(right + horizon)[
+        #if school-logo == none {
+          image("images/ENSIAS.svg")
+        } else {
+          school-logo
         }
       ]
     ]
-  }
+  ]
   
   // Title box  
   align(center + horizon)[

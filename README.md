@@ -13,7 +13,7 @@ More improvements will come soon.
 ## Usage
 
 ```typ
-#import "@preview/ensias-report:0.1.0": project
+#import "@preview/red-agora:0.1.1": project
 
 #show: project.with(
   title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
@@ -22,8 +22,8 @@ More improvements will come soon.
     "Amine Hadnane",
     "Mehdi Essalehi"
   ),
-  school-logo: "images/ENSIAS.svg",
-  company-logo: "images/company.svg",
+  school-logo: image("images/ENSIAS.svg"), // Replace with [] to remove the school logo
+  company-logo: image("images/company.svg"),
   mentors: (
     "Pr. John Smith (Internal)",
     "Jane Doe (External)"
