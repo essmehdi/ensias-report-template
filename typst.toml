@@ -8,6 +8,7 @@ authors = ["Mehdi Essalehi <@essmehdi>", "Amine Hadnane <@amin-hdn>"]
 categories = ["report"]
 keywords = ["ensias", "report", "internship", "academic", "project"]
 exclude = ["example.pdf"]
+repository = "https://github.com/essmehdi/ensias-report-template"
 
 [template]
 path = "template"
