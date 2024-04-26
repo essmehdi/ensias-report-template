@@ -1,7 +1,7 @@
 #let IMAGE_BOX_MAX_WIDTH = 120pt
 #let IMAGE_BOX_MAX_HEIGHT = 50pt
 
-#let project(title: "", subtitle: none, school-logo: none, company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, french: false, body) = {
+#let project(title: "", subtitle: none, school-logo: none, company-logo: none, authors: (), mentors: (), jury: (), branch: none, academic-year: none, french: false, footer-text: "ENSIAS", body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(
@@ -14,7 +14,7 @@
         line(length: 100%, stroke: 0.5pt)
         v(-2pt)
         text(size: 12pt, weight: "regular")[
-          ENSIAS
+          #footer-text
           #h(1fr)
           #page-number
           #h(1fr)
