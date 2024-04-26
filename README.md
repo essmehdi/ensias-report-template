@@ -35,7 +35,20 @@ More improvements will come soon.
   branch: "Software Engineering",
   academic-year: "2077-2078",
   french: false // Use french instead of english
+  footer-text: "ENSIAS" // Text used in left side of the footer
 )
 
 // Put then your content here
 ```
+
+## Changelog
+
+**0.1.0 - Initial release**
+
+- First page style
+- Level 1 headings chapter style
+
+**0.1.1**
+
+- Fixed major issue where custom school & company logos would throw an error
+- Added option to customize footer left side text (thus fixing the issue of it being hardcoded)
