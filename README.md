@@ -34,7 +34,7 @@ More improvements will come soon.
   ),
   branch: "Software Engineering",
   academic-year: "2077-2078",
-  french: false // Use french instead of english
+  french: false, // Use french instead of english
   footer-text: "ENSIAS" // Text used in left side of the footer
 )
 
