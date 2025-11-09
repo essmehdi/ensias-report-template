@@ -9,5 +9,7 @@
   "figures_table": "Table des figures",
   "tables_table": "Table des tableaux",
 
-  "chapter": "Chapitre"  
+  "chapter": "Chapitre",
+  "defended_on_pre_date": "Soutenu le",
+  "defended_on_post_date": "devant le jury composé de"
 }

@@ -9,5 +9,7 @@
   "figures_table": "Table of figures",
   "tables_table": "Table of tables",
 
-  "chapter": "Chapter"
+  "chapter": "Chapter",
+  "defended_on_pre_date": "Defended on",
+  "defended_on_post_date": "in front of the jury composed of"
 }
