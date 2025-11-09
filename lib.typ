@@ -16,7 +16,6 @@
   academic-year: none,
   french: false,
   lang: none,
-  dir: none,
   footer-text: "ENSIAS",
   features: (),
   heading-numbering: "1.1",
@@ -32,7 +31,6 @@
     footer: context {
       // Omit page number on the first page
       let page-number = counter(page).get().at(0);
-      // let page-number = 3;
       if page-number > 1 {
         line(length: 100%, stroke: 0.5pt)
         v(-2pt)
@@ -57,12 +55,12 @@
   }
 
   if not supported-langs.contains(lang) {
-    panic("The param `lang` has invalid value")
+    panic("Unsupported `lang` value. Supported languages: " + supported-langs.join(","))
   }
 
   let dict = json("resources/i18n/" + lang + ".json")
 
-  set text(font: "Linux Libertine", lang: lang, dir: auto, size: 13pt)
+  set text(lang: lang, size: 13pt)
   set heading(numbering: heading-numbering)
 
   show heading: it => {
@@ -97,7 +95,7 @@
       }
   }
 
-  // if features.contains("header-chapter-name") {
+  if features.contains("header-chapter-name") {
     set page(header: context {
       let all-headings = query(heading.where(level: 1))
       let current-page-headings = all-headings.filter(h =>
@@ -125,7 +123,7 @@
         ]
       }
     })
-  // }
+  }
 
   if header != none {
     h(1fr)
@@ -225,16 +223,14 @@
   )
 
   align(center + bottom)[
-    #if defense-date != none {
+    #if defense-date != none and jury != none and jury.len() > 0 {
       [*#dict.defended_on_pre_date #defense-date #dict.defended_on_post_date:*]
       // Jury
-      if jury != none and jury.len() > 0 {
-        align(center)[
-          #for prof in jury {
-            [#prof #linebreak()]
-          }
-        ]
-      }
+      align(center)[
+        #for prof in jury {
+          [#prof #linebreak()]
+        }
+      ]
       v(60pt)
     }
     #if branch != none {
