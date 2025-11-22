@@ -1,4 +1,4 @@
-#import "@preview/red-agora:0.1.1": project
+#import "@preview/red-agora:0.2.0": project
 
 #show: project.with(
   title: "Injecting a backdoor in the xz library and taking over NASA and SpaceX spaceship tracking servers (for education purposes only)",
@@ -16,5 +16,6 @@
     "Pr. Jane Doe"
   ),
   branch: "Software Engineering",
-  academic-year: "2077-2078"
+  academic-year: "2077-2078",
+  footer-text: "ENSIAS",
 )
