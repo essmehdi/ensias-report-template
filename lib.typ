@@ -95,35 +95,29 @@
       }
   }
 
-  if features.contains("header-chapter-name") {
-    set page(header: context {
-      let all-headings = query(heading.where(level: 1))
-      let current-page-headings = all-headings.filter(h =>
-        h.location().page() == here().page()
-      )
-      if current-page-headings.len() > 0 {
-        return none
-      }
-      let headings = all-headings.filter(h =>
-        h.location().page() < here().page()
-      )
-      if headings != () {
-        let current-heading = headings.last()
-        let count = counter(heading).at(current-heading.location()).at(0)
-        if count < 1 or current-heading.numbering == none {
-          return none
-        }
-        [
-          #h(1fr)
-          #text(accent-color, weight: "bold")[
-            #dict.chapter #count:
+  set page(header: context {
+    let headings = query(heading.where(level: 1).before(here()))
+    let after-headings = query(heading.where(level: 1).after(here())).filter(h => h.location().page() == here().page())
+    if headings == () {
+      []
+    } else {
+      let current-chapter = headings.last()
+      if current-chapter.level == 1 and current-chapter.numbering != none {
+        let in-page-heading = if after-headings.len() > 0 { after-headings.first() } else { none }
+        if in-page-heading == none or in-page-heading.level != 1 or in-page-heading.numbering == none {
+          let count = counter(heading).at(current-chapter.location()).at(0)
+          [
+            #h(1fr)
+            #text(accent-color, weight: "bold")[
+              #dict.chapter #count:
+            ]
+            #current-chapter.body
+            #line(length: 100%)
           ]
-          #current-heading.body
-          #line(length: 100%)
-        ]
+        }
       }
-    })
-  }
+    }
+  }) if features.contains("header-chapter-name")
 
   if header != none {
     h(1fr)
